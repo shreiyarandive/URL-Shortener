@@ -1,0 +1,33 @@
+<div class="form-container">
+
+  <form [formGroup]="urlForm" (submit)="shortenUrl()">
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>URL</mat-label>
+      <input matInput type="url" formControlName="url" required>
+      <mat-error *ngIf="urlForm.controls.url.touched && urlForm.controls.url.invalid">
+        <span *ngIf="urlForm.controls.url.errors?.required">This is mandatory</span>
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary">Shorten</button>
+  </form>
+</div>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="full">
+      <th mat-header-cell *matHeaderCellDef>Full Url</th>
+      <td mat-cell *matCellDef="let url"><button mat-flat-button (click)="redirectOriginalUrl(url.full)">{{url.full}}</button></td>
+    </ng-container>
+    <ng-container matColumnDef="short">
+      <th mat-header-cell *matHeaderCellDef>Short Url</th>
+      <td mat-cell *matCellDef="let url"><button mat-flat-button (click)="redirectShortUrl(url.short)">{{url.short}}</button></td>
+    </ng-container>
+    <ng-container matColumnDef="clicks">
+      <th mat-header-cell *matHeaderCellDef>Click</th>
+      <td mat-cell *matCellDef="let url">{{url.clicks}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
