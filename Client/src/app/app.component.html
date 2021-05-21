@@ -13,21 +13,23 @@
     <button mat-flat-button color="primary">Shorten</button>
   </form>
 </div>
-  <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="full">
-      <th mat-header-cell *matHeaderCellDef>Full Url</th>
-      <td mat-cell *matCellDef="let url"><button mat-flat-button (click)="redirectOriginalUrl(url.full)">{{url.full}}</button></td>
-    </ng-container>
-    <ng-container matColumnDef="short">
-      <th mat-header-cell *matHeaderCellDef>Short Url</th>
-      <td mat-cell *matCellDef="let url"><button mat-flat-button (click)="redirectShortUrl(url.short)">{{url.short}}</button></td>
-    </ng-container>
-    <ng-container matColumnDef="clicks">
-      <th mat-header-cell *matHeaderCellDef>Click</th>
-      <td mat-cell *matCellDef="let url">{{url.clicks}}</td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
-
+<table mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="full">
+    <th mat-header-cell *matHeaderCellDef>Full Url</th>
+    <td mat-cell *matCellDef="let url">
+      <a href="{{url.full}}">{{url.full}}</a>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="short">
+    <th mat-header-cell *matHeaderCellDef>Short Url</th>
+    <td mat-cell *matCellDef="let url">
+      <a href="http://localhost:5000/{{url.short}}">{{url.short}}</a>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="clicks">
+    <th mat-header-cell *matHeaderCellDef>Click</th>
+    <td mat-cell *matCellDef="let url">{{url.clicks}}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
